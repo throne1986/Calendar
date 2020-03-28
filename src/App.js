@@ -128,7 +128,7 @@ class EventCalendar extends React.Component {
                    //console.log(eventMeta, dayIndex, days);
 
                     if (days[eventMeta.firstVisibleDayIndex + dayIndex]) {
-                       if (days[eventMeta.firstVisibleDayIndex + dayIndex].eventSlot) {
+                       if (days[eventMeta.firstVisibleDayIndex + dayIndex].eventSlots) {
                             days[eventMeta.firstVisibleDayIndex + dayIndex].eventSlots[eventSlotIndex] = eventData;
                             
                        }
