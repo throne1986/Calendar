@@ -1,7 +1,6 @@
 import React from 'react';
 import {Calendar} from 'calendar-base';
-import classnames from 'classnames';
-
+import PropTypes from 'prop-types';
 import CalendarDay from './components/CalendarDay';
 import CalendarEvent from './components/CalendarEvent';
 import CalendarTitle from './components/CalendarTitle';
@@ -44,6 +43,9 @@ class EventCalendar extends React.Component {
     }
 
     getEventMeta(days, eventStart, eventEnd) {
+        // console.log("days", days);
+        // console.log("eventStart", eventStart);
+        // console.log("eventEnd", eventEnd);
         const eventStartInView = this.calendar.isDateSelected(eventStart);
         const eventEndInView = this.calendar.isDateSelected(eventEnd);
         const firstDayOfMonth = days[0];
@@ -93,6 +95,7 @@ class EventCalendar extends React.Component {
             const eventStart = this.getCalendarDayObject(eventItem.start);
             const eventEnd = this.getCalendarDayObject(eventItem.end);
             const eventMeta = this.getEventMeta(days, eventStart, eventEnd);
+            console.log("eventmeta", eventMeta);
 
             if (eventMeta.isVisibleInView) {
                 const eventLength = eventMeta.visibleEventLength;
@@ -171,6 +174,7 @@ class EventCalendar extends React.Component {
         
         // Trim excess slots
         const eventSlots = day.eventSlots.slice(0, this.getLastIndexOfEvent(day.eventSlots) + 1)
+        console.log("eventSlots" , eventSlots);
 
         return eventSlots.map((eventData, index) => {
             return (
@@ -215,16 +219,16 @@ class EventCalendar extends React.Component {
 }
 
 EventCalendar.propTypes = {
-    daysOfTheWeek: React.PropTypes.array,
-    events: React.PropTypes.array,
-    maxEventSlots: React.PropTypes.number,
-    month: React.PropTypes.number.isRequired,
-    onEventClick: React.PropTypes.func,
-    onEventMouseOut: React.PropTypes.func,
-    onEventMouseOver: React.PropTypes.func,
-    onDayClick: React.PropTypes.func,
-    wrapTitle: React.PropTypes.bool,
-    year: React.PropTypes.number.isRequired,
+    daysOfTheWeek: PropTypes.array,
+    events: PropTypes.array,
+    maxEventSlots: PropTypes.number,
+    month: PropTypes.number,
+    onEventClick: PropTypes.func,
+    onEventMouseOut: PropTypes.func,
+    onEventMouseOver: PropTypes.func,
+    onDayClick: PropTypes.func,
+    wrapTitle: PropTypes.bool,
+    year: PropTypes.number,
 
 };
 
