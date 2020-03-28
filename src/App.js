@@ -43,9 +43,7 @@ class EventCalendar extends React.Component {
     }
 
     getEventMeta(days, eventStart, eventEnd) {
-        // console.log("days", days);
-        // console.log("eventStart", eventStart);
-        // console.log("eventEnd", eventEnd);
+    
         const eventStartInView = this.calendar.isDateSelected(eventStart);
         const eventEndInView = this.calendar.isDateSelected(eventEnd);
         const firstDayOfMonth = days[0];
@@ -95,11 +93,15 @@ class EventCalendar extends React.Component {
             const eventStart = this.getCalendarDayObject(eventItem.start);
             const eventEnd = this.getCalendarDayObject(eventItem.end);
             const eventMeta = this.getEventMeta(days, eventStart, eventEnd);
-            console.log("eventmeta", eventMeta);
+         
 
             if (eventMeta.isVisibleInView) {
                 const eventLength = eventMeta.visibleEventLength;
-                const eventSlotIndex = days[eventMeta.firstVisibleDayIndex].eventSlots.indexOf(false);
+
+                console.log("Days", days); 
+                               
+                const eventSlotIndex = days[eventMeta.firstVisibleDayIndex].eventSlots.indexOf(false); // this line returns error
+                //console.log("eventSotsindex", eventSlotIndex);
                 let dayIndex = 0;
 
                 // For each day in the event
@@ -123,7 +125,15 @@ class EventCalendar extends React.Component {
                     }
 
                     // Apply Event Data to the correct slot for that day
-                    days[eventMeta.firstVisibleDayIndex + dayIndex].eventSlots[eventSlotIndex] = eventData;
+                   //console.log(eventMeta, dayIndex, days);
+
+                    if (days[eventMeta.firstVisibleDayIndex + dayIndex]) {
+                       if (days[eventMeta.firstVisibleDayIndex + dayIndex].eventSlot) {
+                            days[eventMeta.firstVisibleDayIndex + dayIndex].eventSlots[eventSlotIndex] = eventData;
+                            
+                       }
+                    }
+                    
 
                     // Move to next day of event
                     dayIndex++;
@@ -174,8 +184,7 @@ class EventCalendar extends React.Component {
         
         // Trim excess slots
         const eventSlots = day.eventSlots.slice(0, this.getLastIndexOfEvent(day.eventSlots) + 1)
-        console.log("eventSlots" , eventSlots);
-
+ 
         return eventSlots.map((eventData, index) => {
             return (
                 <CalendarEvent 
