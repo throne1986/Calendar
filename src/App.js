@@ -1,9 +1,10 @@
 import React from 'react';
 import {Calendar} from 'calendar-base';
 import PropTypes from 'prop-types';
-import CalendarDay from './components/CalendarDay';
 import CalendarEvent from './components/CalendarEvent';
+import CalendarDay from './components/CalendarDay';
 import CalendarTitle from './components/CalendarTitle';
+import moment from 'moment';
 
 class EventCalendar extends React.Component {
 
@@ -23,6 +24,7 @@ class EventCalendar extends React.Component {
         this.getDaysWithEvents = this.getDaysWithEvents.bind(this);
         this.getEventMeta = this.getEventMeta.bind(this);
         this.getToday = this.getToday.bind(this);
+        
 
     }
 
@@ -98,9 +100,9 @@ class EventCalendar extends React.Component {
             if (eventMeta.isVisibleInView) {
                 const eventLength = eventMeta.visibleEventLength;
 
-                console.log("Days", days); 
-                               
-                const eventSlotIndex = days[eventMeta.firstVisibleDayIndex].eventSlots.indexOf(false); // this line returns error
+                //console.log("Days", days); 
+                const eventSlotIndex= eventMeta.firstVisibleDayIndex < days.length ? eventMeta.firstVisibleDayIndex : 0;
+                //const eventSlotIndex = days[eventMeta.firstVisibleDayIndex].eventSlots.indexOf(false); // this line returns error
                 //console.log("eventSotsindex", eventSlotIndex);
                 let dayIndex = 0;
 
@@ -125,7 +127,7 @@ class EventCalendar extends React.Component {
                     }
 
                     // Apply Event Data to the correct slot for that day
-                   //console.log(eventMeta, dayIndex, days);
+                  // console.log("eventmeta", eventMeta, dayIndex, days);
 
                     if (days[eventMeta.firstVisibleDayIndex + dayIndex]) {
                        if (days[eventMeta.firstVisibleDayIndex + dayIndex].eventSlots) {
@@ -146,11 +148,14 @@ class EventCalendar extends React.Component {
 
     getCalendarDayObject(date) {
         const dateArray = date.split('-');
+        
+        var weekDayName =  moment(dateArray).format('dddd');
+        // console.log("weekdayname", weekDayName);
         return {
             year: dateArray[0],
-            // Subtract 1 from month to allow for human declared months
             month: dateArray[1] - 1,
             day: dateArray[2],
+            weekDayName:weekDayName
         };
     }
 
@@ -183,7 +188,8 @@ class EventCalendar extends React.Component {
     renderEvents(day) {
         
         // Trim excess slots
-        const eventSlots = day.eventSlots.slice(0, this.getLastIndexOfEvent(day.eventSlots) + 1)
+        const eventSlots = day.eventSlots.slice(0, this.getLastIndexOfEvent(day.eventSlots) + 1);
+        
  
         return eventSlots.map((eventData, index) => {
             return (
@@ -218,6 +224,7 @@ class EventCalendar extends React.Component {
     }
 
     render() {
+
         return (
             <div className="flexContainer">
                 {this.renderDaysOfTheWeek()}

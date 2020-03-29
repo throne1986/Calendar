@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 
 const CalendarTitle = ({title}) => {
     return (
-    <div className="flexColumn">
-        {title}
+    <div id="title" className="flexColumn">
+        {/* {title} */}
     </div>
     )
 }

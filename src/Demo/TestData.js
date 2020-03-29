@@ -6,44 +6,367 @@ export default {
         const dataFormat = 'YYYY-MM-DD';
         const description = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Sed nisi. Nulla quis sem at nibh elementum imperdiet. Duis sagittis ipsum. Praesent mauris. Fusce nec tellus sed augue semper porta. Mauris massa. Vestibulum lacinia arcu eget nulla. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Curabitur sodales ligula in libero. Sed dignissim lacinia nunc.';
         const eventMeta = [
-            {
-                start: 1,
-                length: 5,
-            },
-            {
-                start: 5,
-                length: 1,
-            },
-            {
-                start: 5,
-                length: 3,
-            },
-            {
-                start: 12,
-                length: 15,
-            },
-            {
-                start: 15,
-                length: 45,
-            },
-            {
-                start: 18,
-                length: 6,
-            },
-            {
-                start: 21,
-                length: 5,
-            },
-            {
-                start: 24,
-                length: 14,
-            },
-            {
-                start: 25,
-                length: 9,
-            },
+                {
+                    title: 'Womens History Month ',
+                    start: '2020-03-02',
+                    end: '2020-03-02',
+                    description: '',
+                    url: 'dev91b558163211cf9d2e7d1efe6c3e32035973fdf9',
+                    eventClasses: 'event1'
+        
+                },
+                {
+                    title: 'New Years Day',
+                    start: '2020-01-01',
+                    end: '2020-01-01',
+                    url: 'dev91b558163211cf9d2e7d1efe6c3e32035973fdf9',
+                    eventClasses:'event2',
+        
+                },
+                {
+                    title: 'Grandmothers Day:',
+                    start: '2020-01-21',
+                    end: '2020-01-21',
+                    url: 'a71a4cabc0c8d03c1c903b63c226ef8661cf0726',
+                  eventClasses: 'event3'
+                },
+                {
+                    title: 'Orthodox Christmas:',
+                    start: '2020-01-07',
+                    end: '2020-01-07',
+                    url: 'dev91b558163211cf9d2e7d1efe6c3e32035973fdf9',
+                    eventClasses: 'event4',
+        
+                },
+                {
+                    title: 'Martin Luther King Jr. Day',
+                    start: '2020-01-20',
+                    end: '2020-01-20',
+                    url: 'dev91b558163211cf9d2e7d1efe6c3e32035973fdf9',
+                   eventClasses: 'event5'
+        
+                },
+                {
+                    title: 'Trzech Króli (Objawienie Pańskie)',
+                    start: '2020-01-06',
+                    end: '2020-01-06',
+                    url: 'dev91b558163211cf9d2e7d1efe6c3e32035973fdf9',
+                    eventClasses: 'event1'
+        
+                },
+                {
+                    title: 'Darwin Day',
+                    start: '2020-02-12',
+                    end: '2020-02-12',
+                    url: 'dev91b558163211cf9d2e7d1efe6c3e32035973fdf9',
+                  eventClasses:'event2'
+        
+                },
+                {
+                    title: 'Valentines Day',
+                    start: '2020-02-14',
+                    end: '2020-02-14',
+                    url: 'dev91b558163211cf9d2e7d1efe6c3e32035973fdf9',
+                  eventClasses: 'event3'
+                },
+                {
+                    title: 'First Day of Black History Month',
+                    start: '2020-02-01',
+                    end: '2020-02-01',
+                    url: 'dev91b558163211cf9d2e7d1efe6c3e32035973fdf9',
+                  eventClasses: 'event4'
+                },
+        
+                {
+                    title: 'ST, Patricks Day',
+                    start: '2020-03-17',
+                    end: '2020-03-17',
+                    url: 'dev91b558163211cf9d2e7d1efe6c3e32035973fdf9',
+                   eventClasses: 'event5'
+                },
+                {
+                    title: 'First Day of Spring ',
+                    start: '2020-03-20',
+                    end: '2020-03-20',
+                    url: 'bfa2bbb468f72b1d11d97a3bbf42a58a23abfa0f',
+                  eventClasses: 'event1'
+                },
+                {
+                    title: 'International Womens Day',
+                    start: '2020-03-08',
+                    end: '2020-03-08',
+                    url: 'dev91b558163211cf9d2e7d1efe6c3e32035973fdf9',
+                  eventClasses:'event2'
+        
+                },
+                {
+                    title: 'April Fools Day',
+                    start: '2020-04-01',
+                    end: '2020-04-01',
+                    url: 'dev91b558163211cf9d2e7d1efe6c3e32035973fdf9',
+                  eventClasses:'event2'
+                },
+                {
+                    title: 'Autism Day',
+                    start: '2020-04-02',
+                    end: '2020-04-02',
+                    url: 'dev91b558163211cf9d2e7d1efe6c3e32035973fdf9',
+                  eventClasses: 'event3'
+                },
+                {
+                    title: 'Good Friday:',
+                    start: '2020-04-12',
+                    end: '2020-04-12',
+                    url: 'ce42231cf7055b3ccad44f77cd21fe1ed7c2cfec',
+                  eventClasses: 'event4'
+                },
+                {
+                    title: 'Easter',
+                    start: '2020-04-13',
+                    end: '2020-04-13',
+                    url: 'fd9e504b3b1d036c3df5901e1206b30f3840a899',
+                  eventClasses: 'event5'
+                },
+                {
+                    title: 'International Workers Day',
+                    start: '2020-05-01',
+                    end: '2020-05-01',
+                    url: 'dev91b558163211cf9d2e7d1efe6c3e32035973fdf9',
+                  eventClasses: 'event1'
+                },
+                {
+                    title: 'Poland Constitution Day',
+                    start: '2020-05-03',
+                    end:  '2020-05-03',
+                    url: 'dev91b558163211cf9d2e7d1efe6c3e32035973fdf9',
+                  eventClasses:'event2'
+        
+                },
+                {
+                    title: 'Star Wars Day',
+                    start: '2020-05-04',
+                    end: '2020-05-04',
+                    url: 'dev91b558163211cf9d2e7d1efe6c3e32035973fdf9',
+                   eventClasses: 'event4'
+        
+                },
+                {
+                    title: 'Poland Mothers day',
+                    start: '2020-05-26',
+                    end: '2020-05-26',
+                    url: 'dev91b558163211cf9d2e7d1efe6c3e32035973fdf9',
+                  eventClasses: 'event5'
+        
+                },
+                {
+                    title: 'Pentecost (Pentecost)',
+                    start: '2020-05-30',
+                    end: '2020-05-30',
+                    url: 'dev91b558163211cf9d2e7d1efe6c3e32035973fdf9',
+                  eventClasses: 'event5'
+        
+                },
+                {
+                title: 'international mothers day ',
+                start: '2020-05-10',
+                end: '2020-05-10',
+                url: '31a91df74e5d38deb7628c192eb55524c58540a6',
+              eventClasses: 'event1'
+        
+                },
+                {
+                title: 'Poland Fathers Day',
+                start: '2020-06-05',
+                end: '2020-06-05',
+                url: '31a91df74e5d38deb7628c192eb55524c58540a6',
+              eventClasses:'event2'
+        
+                },
+                {
+                title: 'First day of the summer',
+                start: '2020-06-20',
+                end: '2020-06-20',
+                url: '1b1a41a29d31da7e82a27340768f854141ca94b4',
+              eventClasses:'event2'
+        
+                }, 
+                {
+                    title: 'Boże Ciało',
+                    start: '2020-06-11',
+                    end: '2020-06-11',
+                    url: 'dev91b558163211cf9d2e7d1efe6c3e32035973fdf9',
+                  eventClasses: 'event4'
+        
+                },
+                {
+                    title: 'World Humanist Day',
+                    start: '2020-06-21',
+                    end: '2020-06-21',
+                    url: 'dev91b558163211cf9d2e7d1efe6c3e32035973fdf9',
+                  eventClasses: 'event5'
+        
+                },
+                {
+                    title: 'EID UL FITR',
+                    start: '2020-06-06',
+                    end:  '2020-06-06',
+                    url: 'dev91b558163211cf9d2e7d1efe6c3e32035973fdf9',
+                  eventClasses: 'event5'
+        
+                },
+                {
+                    title: 'Yulefest/Midwinter Christmas',
+                    start: '2020-07-06',
+                    end: '2020-07-06',
+                    url: 'dev91b558163211cf9d2e7d1efe6c3e32035973fdf9',
+                  eventClasses: 'event1'
+        
+                },
+                {
+                    title: 'Eid al-Adha:',
+                    start: '2020-08-11',
+                    end: '2020-08-11',
+                    url: 'dev91b558163211cf9d2e7d1efe6c3e32035973fdf9',
+                  eventClasses:'event2'
+                },
+                {
+                    title: 'International Friendship Day',
+                    start: '2020-08-02',
+                    end: '2020-08-02',
+                    url: 'dev91b558163211cf9d2e7d1efe6c3e32035973fdf9',
+                  eventClasses: 'event3'
+                },
+                {
+                    title: 'International Lefthanders Day',
+                    start: '2020-08-13',
+                    end: '2020-08-13',
+                    url: 'dev91b558163211cf9d2e7d1efe6c3e32035973fdf9',
+                  eventClasses: 'event4'
+        
+                },
+                {
+                    title: 'Back To School',
+                    start: '2020-09-01',
+                    end: '2020-09-01',
+                    url: '10c90eb32b83bb203d475582f81fb89c77f0acf6',
+                  eventClasses: 'event1'
+        
+                },
+                {
+                    title: 'First day of fall',
+                    start: '2020-09-22',
+                    end: '2020-09-22',
+                    url: 'fb1dda4419e150438108050bc46e67d0f31a42a8',
+                  eventClasses: 'event1'
+        
+                },
+                {
+                    title: 'International Talk Like a Pirate Day:',
+                    start: '2020-09-19',
+                    end: '2020-09-19',
+                    url: 'dev91b558163211cf9d2e7d1efe6c3e32035973fdf9',
+                  eventClasses:'event2'
+        
+                },
+                {
+                    title: 'International Day of Peace',
+                    start: '2020-09-21',
+                    end: '2020-09-21',
+                    url: 'dev91b558163211cf9d2e7d1efe6c3e32035973fdf9',
+                  eventClasses: 'event3'
+        
+                },
+                {
+                    title: 'Columbus Day',
+                    start: '2020-10-12',
+                    end: '2020-10-12',
+                    url: 'dev91b558163211cf9d2e7d1efe6c3e32035973fdf9',
+                  eventClasses: 'event5'
+        
+                },
+                {
+                    title: 'All Hallows Eve (Halloween)',
+                    start: '2020-10-31',
+                    end: '2020-10-31',
+                    url: 'dev91b558163211cf9d2e7d1efe6c3e32035973fdf9',
+                  eventClasses: 'event1'
+        
+                },
+                {
+                    title: 'All Saints Day:',
+                    start: '2020-11-01',
+                    end: '2020-11-01',
+                    url: 'dev91b558163211cf9d2e7d1efe6c3e32035973fdf9',
+                  eventClasses:'event2'
+        
+                },
+                {
+                    title: 'Poland Independence Day',
+                    start: '2020-11-11',
+                    end: '2020-11-11',
+                    url: 'dev91b558163211cf9d2e7d1efe6c3e32035973fdf9',
+                  eventClasses: 'event3'
+        
+                },
+                {
+                    title: 'Happy Turkey Day',
+                    start: '2020-11-25',
+                    end: '2020-11-25',
+                    url: '959e502b17d759a7a44cc311e8b4b0c1ceb07ebe',
+                  eventClasses: 'event4'
+        
+                },
+                {
+                    title: 'Thanksgiving:',
+                    start: '2020-11-26',
+                    end: '2020-11-26',
+                    url: 'b7588913388de432b8c71f0ab702c833f8bc52d2',
+                  eventClasses: 'event5'
+        
+                },
+                {
+                    title: 'International Day of Disabled Persons',
+                    start: '2020-12-03',
+                    end: '2020-12-03',
+                    url: 'dev91b558163211cf9d2e7d1efe6c3e32035973fdf9',
+                  eventClasses: 'event1'
+        
+                },
+                {
+                    title: 'Human Rights Day',
+                    start: '2020-12-10',
+                    end: '2020-12-10',
+                    url: 'dev91b558163211cf9d2e7d1efe6c3e32035973fdf9',
+                  eventClasses:'event2'
+        
+                },
+                {
+                    title: 'Christmas Eve:',
+                    start: '2020-12-24',
+                    end: '2020-12-24',
+                    url: 'dev91b558163211cf9d2e7d1efe6c3e32035973fdf9',
+                  eventClasses: 'event3'
+        
+                },
+                {
+                    title: 'Christmas Day',
+                    start: '2020-12-25',
+                    end: '2020-12-25',
+                    url: 'dev91b558163211cf9d2e7d1efe6c3e32035973fdf9',
+                  eventClasses: 'event4'
+        
+                },
+                {
+                    title: 'Boxing Day',
+                    start: '2020-12-26',
+                    end: '2020-12-26',
+                    url: 'dev91b558163211cf9d2e7d1efe6c3e32035973fdf9',
+                  eventClasses: 'event5'
+        
+                }
         ]
 
+        
 
         const events = eventMeta.map((data) => {
             const today = moment(now);

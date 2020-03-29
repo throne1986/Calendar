@@ -1,5 +1,6 @@
 html {
   box-sizing: border-box;
+  overflow-x: hidden;
 }
 
 *, *:before, *:after {
@@ -19,12 +20,16 @@ html {
 .flexColumn {
   display: flex;
   width: 14.2857142857%;
+  height: 201px;
   border-bottom: 1px solid #3b91ad;
   border-right: 1px solid #3b91ad;
   flex: 0 1 auto;
   justify-content: center;
 }
 
+#title{
+  display: none;
+}
 .day.inactive {
   background-color: #f8f8f8;
   color: #ccc;
@@ -81,3 +86,37 @@ html {
   padding: 0.25rem 0.5rem;
   text-align: right;
 }
+.topBar{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+  .flexColumn{
+    width: 49.285714%;
+    flex: 1 1 auto;
+    
+  }
+  .flexContainer{
+    width: 99%;
+  }
+
+}
+
+
+/* Medium devices (tablets, 768px and up) The navbar toggle appears at this breakpoint */
+@media only screen and (min-width: 768px) and (max-width:1024px ){
+  .flexContainer{
+    width: 87%;
+  }
+  .flexColumn{
+   width: 33.285714%;
+   flex:1 1 auto;
+  }
+ }
+
+
+ 

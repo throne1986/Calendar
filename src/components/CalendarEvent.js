@@ -1,17 +1,17 @@
-import React from 'react';
+import React, {useRef } from 'react';
 import classnames from 'classnames';
 import PropTypes from 'prop-types';
 
 class CalendarEvent extends React.Component {
-
     constructor(props) {
         super(props);
 
         this.sharedArguments = [null, this, this.props.eventData, this.props.day];
         // Bind methods
         this.handleClick = this.handleClick.bind(this);
+        this.backgroundImageRef = React.createRef();
     }
-    
+ 
     componentWillReceiveProps(nextProps) {
       this.sharedArguments = [null, this, nextProps.eventData, nextProps.day];
     }
@@ -21,7 +21,19 @@ class CalendarEvent extends React.Component {
         e.stopPropagation();
     }
 
-    render() {
+    render() { 
+        let getEventData = this.props.eventData.eventClasses;
+    
+        switch (getEventData) {
+            case 'event1':
+                let getInnerGrid = document.querySelector('.inner-grid');
+                //console.log(getInnerGrid);
+                //event1,style.backgroundImage = "url('../images/eventbg1.svg')";
+                break;
+        
+            default:
+                break;
+        }
         // Return a placeholder element if there is no event data 
         if(!this.props.eventData) {
             return <div className="event-slot"></div>;
@@ -40,7 +52,7 @@ class CalendarEvent extends React.Component {
 
 
         return (
-            <div className={eventClasses}
+            <div data={this.props.eventData.eventClasses} className={eventClasses}
                 onClick={this.handleClick}
                 onMouseOut={this.props.onMouseOut.bind(...this.sharedArguments)}
                 onMouseOver={this.props.onMouseOver.bind(...this.sharedArguments)}
