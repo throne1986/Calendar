@@ -5,9 +5,6 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Button from 'react-bootstrap/Button';
 import ButtonToolbar from 'react-bootstrap/ButtonToolbar';
-import Popover from 'react-bootstrap/PopOver';
-import Overlay from 'react-bootstrap/Overlay';
-import Modal from 'react-bootstrap/Modal';
 //import TestData from '../Demo/TestData';
 
 
@@ -376,11 +373,11 @@ export const CalendarDemo = (props) => {
   const [_moment, updateMoment] = useState(moment());
 
   const handleNextMonth = () => {
-      updateMoment(_moment.add(1, "M"));
+      updateMoment(_moment.add(1, "M").clone());
   }
 
   const handlePreviousMonth = () => {
-      updateMoment(_moment.subtract(1, "M"));
+      updateMoment(_moment.subtract(1, "M").clone());
   }
 
   const handleToday = () => {
