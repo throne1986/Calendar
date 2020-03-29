@@ -1,5 +1,4 @@
-import React, { Component } from 'react'
-import ReactDOM from 'react-dom';
+import React, { useState } from 'react'
 import EventCalendar from '../App';
 import moment from 'moment';
 import Row from 'react-bootstrap/Row';
@@ -373,159 +372,83 @@ const events =[
         }
 ];
 
-export class CalendarDemo extends Component {
-    constructor(props) {
-        super(props);
+export const CalendarDemo = (props) => {
+  const [_moment, updateMoment] = useState(moment());
 
-        this.state = {
-            moment: moment(),
-            showPopover: false,
-            showModal: false,
-            overlayTitle: null,
-            overlayContent: null,
-            popoverTarget: null,
-        };
+  const handleNextMonth = () => {
+      updateMoment(_moment.add(1, "M"));
+  }
 
-        this.handleNextMonth = this.handleNextMonth.bind(this);
-        this.handlePreviousMonth = this.handlePreviousMonth.bind(this);
-        this.handleToday = this.handleToday.bind(this);
-        this.handleEventClick = this.handleEventClick.bind(this);
-        this.handleEventMouseOver = this.handleEventMouseOver.bind(this);
-        this.handleEventMouseOut = this.handleEventMouseOut.bind(this);
-        this.handleDayClick = this.handleDayClick.bind(this);
-        this.handleModalClose = this.handleModalClose.bind(this);
-    }
+  const handlePreviousMonth = () => {
+      updateMoment(_moment.subtract(1, "M"));
+  }
 
+  const handleToday = () => {
+      updateMoment(moment());
+  }
 
-    handleNextMonth() {
-        this.setState({
-            moment: this.state.moment.add(1, 'M'),
-        });
-    }
+  const handleEventMouseOver = (target, eventData, day)  => {
+      console.log("event data", target.props.eventData.url);
+  }
 
-    handlePreviousMonth() {
-        this.setState({
-            moment: this.state.moment.subtract(1, 'M'),
-        });
-    }
+  const handleEventMouseOut = (target, eventData, day) => {
 
-    handleToday() {
-        this.setState({
-            moment: moment(),
-        });
-    }
+  }
 
-    handleEventMouseOver(target, eventData, day) {
-        this.setState({
-            showPopover: true,
-            popoverTarget: () => ReactDOM.findDOMNode(target),
-                overlayTitle: eventData.title,
-                overlayContent: eventData.description,
-        });
-    }
+  const handleEventClick = (target, eventData, data) => {
 
-    handleEventMouseOut(target, eventData, day) {
-        this.setState({
-            showPopover: false,
-        });
-    }
+  }
 
-    handleEventClick(target, eventData, day) {
-        this.setState({
-            showPopover: false,
-            showModal: true,
-            overlayTitle: eventData.title,
-            overlayContent: eventData.description,
-        });
-    }
+  const handleDayClick = (target, day) => {
 
-    handleDayClick(target, day) {
-        this.setState({
-            showPopover: false,
-            showModal: true,
-            overlayTitle: this.getMomentFromDay(day).format('Do of MMMM YYYY'),
-            overlayContent: 'User clicked day (but not event node).',
-        });
-    }
+  }
 
-    getMomentFromDay(day) {
-        return moment().set({
-            'year': day.year,
-            'month': (day.month + 0) % 12,
-            'date': day.day,
-    
-        });
-    }
+  const getMomentFromDay = day => {
+      return moment().set({
+          'year': day.year,
+          'month': (day.month + 0) % 12,
+          'date': day.day,
 
-    handleModalClose() {
-        this.setState({
-            showModal: false,
-        })
-    }
+      });
+  }
 
-    getHumanDate() {
-        return [moment.months('MM', this.state.moment.month()), this.state.moment.year(), ].join(' ');
-    }
-  
-    render() {
+  const getHumanDate = () => {
+      return [moment.months('MM', _moment.month()), _moment.year(), ].join(' ');
+  }
 
-        return (
-            <div style={styles}>
+  return (
+      <div style={styles}>
 
-                <Overlay
-                    show={this.state.showPopover}
-                    rootClose
-                    onHide = {()=>this.setState({showPopover: false, })}
-                    placement='top'
-                    container={this}
-                    target={this.state.popoverTarget}>
-                    <Popover id='event'>{this.state.overlayTitle}</Popover>
-                </Overlay>
+              <Row className='topBar'>
+                  <Col xs={6}>
+                      <ButtonToolbar>
+                          <Button onClick={handlePreviousMonth}>&lt;</Button>
+                          <Button onClick={handleNextMonth}>&gt;</Button>
+                          <Button onClick={handleToday}>Today</Button>
+                      </ButtonToolbar>
+                  </Col>
+                  <Col xs={6}>
+                      <div className='pull-right h2'>{getHumanDate}</div>
+                  </Col>
+              </Row>
+              <br />
+              <Row>
+                  <Col xs={12}>
+                      <EventCalendar
+                          month={_moment.month()}
+                          year={_moment.year()}
+                          events={events} 
+                          onEventClick={handleEventClick}
+                          onEventMouseOver={handleEventMouseOver}
+                          onEventMouseOut={handleEventMouseOut}
+                          onDayClick={handleDayClick}
+                          maxEventSlots={0}
+                      />
+                  </Col>
+              </Row>
 
-                <Modal show={this.state.showModal} onHide={this.handleModalClose}>
-                    <Modal.Header closeButton>
-                        <Modal.Title>{this.state.overlayTitle}</Modal.Title>
-                    </Modal.Header>
-                    <Modal.Body>
-                        {this.state.overlayContent}
-                    </Modal.Body>
-                    <Modal.Footer>
-                        <Button onClick={this.handleModalClose}>Close</Button>
-                    </Modal.Footer>
-                </Modal>
-
-     
-                    <Row className='topBar'>
-                        <Col xs={6}>
-                            <ButtonToolbar>
-                                <Button onClick={this.handlePreviousMonth}>&lt;</Button>
-                                <Button onClick={this.handleNextMonth}>&gt;</Button>
-                                <Button onClick={this.handleToday}>Today</Button>
-                            </ButtonToolbar>
-                        </Col>
-                        <Col xs={6}>
-                            <div className='pull-right h2'>{this.getHumanDate()}</div>
-                        </Col>
-                    </Row>
-                    <br />
-                    <Row>
-                        <Col xs={12}>
-                            <EventCalendar
-                                month={this.state.moment.month()}
-                                year={this.state.moment.year()}
-                                events={events} 
-                                onEventClick={this.handleEventClick}
-                                onEventMouseOver={this.handleEventMouseOver}
-                                onEventMouseOut={this.handleEventMouseOut}
-                                onDayClick={this.handleDayClick}
-                                maxEventSlots={0}
-                            />
-                        </Col>
-                    </Row>
-               
-            </div>
-        );
-    }
+      </div>
+  );
 }
 
 export default CalendarDemo
