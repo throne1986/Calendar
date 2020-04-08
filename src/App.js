@@ -1,53 +1,43 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import {Calendar} from 'calendar-base';
 import PropTypes from 'prop-types';
 import CalendarEvent from './components/CalendarEvent';
 import CalendarDay from './components/CalendarDay';
 import CalendarTitle from './components/CalendarTitle';
+
 import moment from 'moment';
 
-class EventCalendar extends React.Component {
 
-    constructor(props) {
-        super(props);
+const EventCalendar =props=> {
 
-        this._eventTargets = {};
+const [today, setToday] = useState(getToday);
+const calendar = new Calendar({siblingMonths: true, });
 
-        this.state = {
-            today: this.getToday(),
-        };
-        
-        this.calendar = new Calendar({siblingMonths: true, });
+useEffect(() => {
+    setToday(getToday());
+    },[])
 
-        // Bind methods
-        this.getCalendarDays = this.getCalendarDays.bind(this);
-        this.getDaysWithEvents = this.getDaysWithEvents.bind(this);
-        this.getEventMeta = this.getEventMeta.bind(this);
-        this.getToday = this.getToday.bind(this);
-        
 
-    }
-
-    getToday() {
-        var today = new Date();
-        return {
-            day: today.getDate(),
-            month: today.getMonth(),
-            year: today.getFullYear(),
-        };
-    }
-
-    getCalendarDays() {
-        return this.calendar.getCalendar(this.props.year, this.props.month).map((day) => {
-            day.eventSlots = Array(this.props.maxEventSlots).fill(false); 
+const  getToday =()=>{
+    console.log(this);
+    var today = new Date();
+    return {
+        day: today.getDate(),
+        month: today.getMonth(),
+        year: today.getFullYear(),
+    };
+}
+   const  getCalendarDays = () => {
+        return calendar.getCalendar(props.year, props.month).map((day) => {
+            day.eventSlots = Array(props.maxEventSlots).fill(false); 
             return day;
         });
     }
 
-    getEventMeta(days, eventStart, eventEnd) {
+    const getEventMeta =(days, eventStart, eventEnd) =>{
     
-        const eventStartInView = this.calendar.isDateSelected(eventStart);
-        const eventEndInView = this.calendar.isDateSelected(eventEnd);
+        const eventStartInView = calendar.isDateSelected(eventStart);
+        const eventEndInView = calendar.isDateSelected(eventEnd);
         const firstDayOfMonth = days[0];
         const lastDayOfMonth = days[days.length - 1];
 
@@ -63,7 +53,7 @@ class EventCalendar extends React.Component {
         if (eventStartInView || eventEndInView) {
              // Asserts event's first or last day is visible in this month view
             eventMeta.isVisibleInView = true;
-        } else if (eventStart.month < this.props.month && eventEnd.month > this.props.month) {
+        } else if (eventStart.month < props.month && eventEnd.month > props.month) {
             // Asserts at least part of month is
             eventMeta.isVisibleInView = true;
         }
@@ -80,21 +70,21 @@ class EventCalendar extends React.Component {
         return eventMeta;
     }
 
-    getDaysWithEvents() {
+   const getDaysWithEvents =() =>{
         // Get all the days in this months calendar view
         // Sibling Months included
-        const days = this.getCalendarDays();
+        const days = getCalendarDays();
 
         // Set Range Limits on calendar
-        this.calendar.setStartDate(days[0]);
-        this.calendar.setEndDate(days[days.length - 1]);
+        calendar.setStartDate(days[0]);
+        calendar.setEndDate(days[days.length - 1]);
 
         // Iterate over each of the supplied events
-        this.props.events.forEach((eventItem) => {
+        props.events.forEach((eventItem) => {
 
-            const eventStart = this.getCalendarDayObject(eventItem.start);
-            const eventEnd = this.getCalendarDayObject(eventItem.end);
-            const eventMeta = this.getEventMeta(days, eventStart, eventEnd);
+            const eventStart = getCalendarDayObject(eventItem.start);
+            const eventEnd = getCalendarDayObject(eventItem.end);
+            const eventMeta = getEventMeta(days, eventStart, eventEnd);
          
 
             if (eventMeta.isVisibleInView) {
@@ -102,8 +92,7 @@ class EventCalendar extends React.Component {
 
                 //console.log("Days", days); 
                 const eventSlotIndex= eventMeta.firstVisibleDayIndex < days.length ? eventMeta.firstVisibleDayIndex : 0;
-                //const eventSlotIndex = days[eventMeta.firstVisibleDayIndex].eventSlots.indexOf(false); // this line returns error
-                //console.log("eventSotsindex", eventSlotIndex);
+
                 let dayIndex = 0;
 
                 // For each day in the event
@@ -127,8 +116,6 @@ class EventCalendar extends React.Component {
                     }
 
                     // Apply Event Data to the correct slot for that day
-                  // console.log("eventmeta", eventMeta, dayIndex, days);
-
                     if (days[eventMeta.firstVisibleDayIndex + dayIndex]) {
                        if (days[eventMeta.firstVisibleDayIndex + dayIndex].eventSlots) {
                             days[eventMeta.firstVisibleDayIndex + dayIndex].eventSlots[eventSlotIndex] = eventData;
@@ -146,7 +133,7 @@ class EventCalendar extends React.Component {
         return days;
     }
 
-    getCalendarDayObject(date) {
+  const  getCalendarDayObject =(date) => {
         const dateArray = date.split('-');
         
         var weekDayName =  moment(dateArray).format('dddd');
@@ -159,7 +146,7 @@ class EventCalendar extends React.Component {
         };
     }
 
-    getLastIndexOfEvent(slots) {
+  const  getLastIndexOfEvent =(slots) => {
 
         const lastIndexOfEvent = slots.map((slot, index) => {
             return slot !== false ? index : false;
@@ -170,12 +157,12 @@ class EventCalendar extends React.Component {
         return lastIndexOfEvent < 3 || lastIndexOfEvent === undefined ? 2 : lastIndexOfEvent;
     }
 
-    getSerializedDay(day) {
+  const  getSerializedDay = (day) => {
         return [day.weekDay, day.day, day.month, day.year].join('');
     }
 
-    renderDaysOfTheWeek() {
-        return this.props.daysOfTheWeek.map((title, index) => {
+ const   renderDaysOfTheWeek = () =>{
+        return props.daysOfTheWeek.map((title, index) => {
             return (
                 <CalendarTitle 
                     key={'title_'+ index}
@@ -185,53 +172,52 @@ class EventCalendar extends React.Component {
         });
     }
 
-    renderEvents(day) {
+  const  renderEvents =(day)=> {
         
         // Trim excess slots
-        const eventSlots = day.eventSlots.slice(0, this.getLastIndexOfEvent(day.eventSlots) + 1);
+        const eventSlots = day.eventSlots.slice(0, getLastIndexOfEvent(day.eventSlots) + 1);
         
- 
         return eventSlots.map((eventData, index) => {
             return (
                 <CalendarEvent 
-                    key={'event_'+index+this.getSerializedDay(day)}
+                    key={'event_'+index+getSerializedDay(day)}
                     day={day}
                     eventData={eventData}
-                    onClick={this.props.onEventClick}
-                    onMouseOut={this.props.onEventMouseOut}
-                    onMouseOver={this.props.onEventMouseOver}
-                    wrapTitle={this.props.wrapTitle}
+                    onClick={props.onEventClick}
+                    wrapTitle={props.wrapTitle}
                     />
             );
         });
     }
 
-    renderCalendarDays() {
-        return this.getDaysWithEvents().map((day, index) => {
-            const isToday = Calendar.interval(day, this.state.today) === 1;
-            const events = this.renderEvents(day);
+  const  renderCalendarDays = ()=>{
+        return getDaysWithEvents().map((day, index) => {
+            const isToday = Calendar.interval(day, today) === 1;
+            console.log(isToday)
+            const events = renderEvents(day);
             
             return (
                 <CalendarDay 
-                    key={'day_'+this.getSerializedDay(day)}
+                    key={'day_'+getSerializedDay(day)}
                     day={day} 
                     events={events}
                     isToday={isToday} 
-                    onClick={this.props.onDayClick}
+                    onClick={props.onDayClick}
+                    onMouseOut={props.onEventMouseOut}
+                    onMouseOver={props.onEventMouseOver}
                     />
                 );
         });
     }
 
-    render() {
+
 
         return (
             <div className="flexContainer">
-                {this.renderDaysOfTheWeek()}
-                {this.renderCalendarDays()}
+                {renderDaysOfTheWeek()}
+                {renderCalendarDays()}
             </div>
         );
-    }
 }
 
 EventCalendar.propTypes = {
