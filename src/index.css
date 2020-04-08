@@ -38,10 +38,24 @@ html {
 .day.today {
   background-color: #fcf8e3;
 }
+.dayName{
+  color: #262626 !important;
+  font-size: 13px;
+  font-family:"Fira Sans" !important;
+  font-weight: 600;
+  position: relative;
+  top: 43px;
+  left: 20px;
+}
 
 .day .inner-grid {
   width: 100%;
   position: relative;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  background-position: center;
+  display: flex;
+  justify-content: left;
 }
 
 .day .event-slot {
@@ -60,6 +74,10 @@ html {
 }
 
 .day .event-slot .event-title {
+  color: #262626 !important;
+  font-size: 14px;
+  font-family:"Fira Sans" !important;
+  font-weight: 600;
   position: absolute;
   top: 3.5px;
   left: 0.5rem;
@@ -68,6 +86,8 @@ html {
   z-index: 1;
   overflow: visible;
   text-indent: 0;
+  top: 82.5px;
+  left: -60px;
 }
 
 .day .event.event-first-day {
@@ -85,6 +105,14 @@ html {
 .day .date {
   padding: 0.25rem 0.5rem;
   text-align: right;
+  color: #262626;
+  font-size: 42px;
+  font-family:"Fira Sans" !important;
+  font-weight: 900;
+  margin-right: 5px;
+  position: relative;
+  top: 22px;
+  left: 20px;
 }
 .topBar{
   display: flex;
@@ -102,6 +130,9 @@ html {
   }
   .flexContainer{
     width: 99%;
+  }
+  .day .event-slot .event-title{
+    white-space: normal;
   }
 
 }

@@ -35,8 +35,10 @@ html {
 }
 
 .day .inner-grid {
-  width: 100%;
+  width: 1000%;
   position: relative;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 .day .event-slot {

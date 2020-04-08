@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import ReactDOM from 'react-dom';
 import EventCalendar from '../App';
 import moment from 'moment';
 import Row from 'react-bootstrap/Row';
@@ -9,7 +8,7 @@ import ButtonToolbar from 'react-bootstrap/ButtonToolbar';
 import Popover from 'react-bootstrap/PopOver';
 import Overlay from 'react-bootstrap/Overlay';
 import Modal from 'react-bootstrap/Modal';
-//import TestData from '../Demo/TestData';
+
 
 
 const events =[
@@ -416,11 +415,9 @@ export class CalendarDemo extends Component {
     }
 
     handleEventMouseOver(target, eventData, day) {
+      console.log("event data", target.props.eventData.url);
         this.setState({
-            showPopover: true,
-            popoverTarget: () => ReactDOM.findDOMNode(target),
-                overlayTitle: eventData.title,
-                overlayContent: eventData.description,
+          
         });
     }
 

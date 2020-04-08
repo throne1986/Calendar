@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import classnames from 'classnames';
 // console.log("classes", classnames);
 export default class CalendarDay extends React.Component {
-  
 
     render () {
 
@@ -51,17 +50,30 @@ export default class CalendarDay extends React.Component {
        if (day.day < 10) {
             day.day = "0" + day.day;
         };
+        let bgStyle = {};
+
+        if(typeof day.eventSlots !== 'undefined' && day.eventSlots.length > 0 ) {
+
+          let getEventData = Object.values(day.eventSlots)[0].eventClasses;
     
-        //console.log("Event Slots", day.eventSlots[1].eventClasses);
-       if(day.eventSlots !== undefined && day.eventSlots.length > 0 ){
-          console.log(day.eventSlots.eventClasses);
-       } 
+          switch (getEventData) {
+              case 'event1':
+                 bgStyle.backgroundImage = "url('../images/eventbg1.png')";
+                 // console.log(getEventData);
+                  break;
+          
+              default:
+                  break;
+          }
+        } 
+
+
         
         return (
             <div 
                 onClick={onClick.bind(null, this, day)}
                 className={dayClasses}>
-                <div className="inner-grid">
+                <div style={bgStyle} className="inner-grid">
                     <div className="date">
                         {day.day}
                     </div>

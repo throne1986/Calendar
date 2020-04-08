@@ -1,4 +1,4 @@
-import React, {useRef } from 'react';
+import React from 'react';
 import classnames from 'classnames';
 import PropTypes from 'prop-types';
 
@@ -22,18 +22,7 @@ class CalendarEvent extends React.Component {
     }
 
     render() { 
-        let getEventData = this.props.eventData.eventClasses;
-    
-        switch (getEventData) {
-            case 'event1':
-                let getInnerGrid = document.querySelector('.inner-grid');
-                //console.log(getInnerGrid);
-                //event1,style.backgroundImage = "url('../images/eventbg1.svg')";
-                break;
-        
-            default:
-                break;
-        }
+      
         // Return a placeholder element if there is no event data 
         if(!this.props.eventData) {
             return <div className="event-slot"></div>;
