@@ -385,7 +385,7 @@ export const CalendarDemo = (props) => {
   }
 
   const handleEventMouseOver = (target, eventData, day)  => {
-      console.log("event data", target.props.eventData.url);
+
   }
 
   const handleEventMouseOut = (target, eventData, day) => {
@@ -400,15 +400,7 @@ export const CalendarDemo = (props) => {
 
   }
 
-  const getMomentFromDay = day => {
-      return moment().set({
-          'year': day.year,
-          'month': (day.month + 0) % 12,
-          'date': day.day,
-
-      });
-  }
-
+ 
   const getHumanDate = () => {
       return [moment.months('MM', _moment.month()), _moment.year(), ].join(' ');
   }

@@ -10,23 +10,8 @@ import moment from 'moment';
 
 const EventCalendar =props=> {
 
-const [today, setToday] = useState(getToday);
 const calendar = new Calendar({siblingMonths: true, });
 
-useEffect(() => {
-    setToday(getToday());
-    },[])
-
-
-const  getToday =()=>{
-    console.log(this);
-    var today = new Date();
-    return {
-        day: today.getDate(),
-        month: today.getMonth(),
-        year: today.getFullYear(),
-    };
-}
    const  getCalendarDays = () => {
         return calendar.getCalendar(props.year, props.month).map((day) => {
             day.eventSlots = Array(props.maxEventSlots).fill(false); 
@@ -192,8 +177,6 @@ const  getToday =()=>{
 
   const  renderCalendarDays = ()=>{
         return getDaysWithEvents().map((day, index) => {
-            const isToday = Calendar.interval(day, today) === 1;
-            console.log(isToday)
             const events = renderEvents(day);
             
             return (
@@ -201,7 +184,6 @@ const  getToday =()=>{
                     key={'day_'+getSerializedDay(day)}
                     day={day} 
                     events={events}
-                    isToday={isToday} 
                     onClick={props.onDayClick}
                     onMouseOut={props.onEventMouseOut}
                     onMouseOver={props.onEventMouseOver}
